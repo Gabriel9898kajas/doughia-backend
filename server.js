@@ -35,15 +35,12 @@ app.post("/chat", async (req, res) => {
       response: response.output_text
     });
   } catch (error) {
-    console.error(error);
+    console.error("ERRO OPENAI:", error);
 
-    } catch (error) {
-  console.error("ERRO OPENAI:", error);
-
-  res.status(500).json({
-    error: error.message || "Erro ao conversar com a IA"
-  });
-}
+    res.status(500).json({
+      error: error.message || "Erro ao conversar com a IA"
+    });
+  }
 });
 
 const PORT = process.env.PORT || 3000;

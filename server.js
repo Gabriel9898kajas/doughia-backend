@@ -6,13 +6,14 @@ const app = express();
 
 app.use(cors());
 app.use(express.json());
+app.use(express.static("public"));
 
 const client = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY
 });
 
 app.get("/", (req, res) => {
-  res.json({ status: "DoughIA online" });
+  res.sendFile(__dirname + "/public/index.html");
 });
 
 app.post("/chat", async (req, res) => {

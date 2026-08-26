@@ -37,10 +37,13 @@ app.post("/chat", async (req, res) => {
   } catch (error) {
     console.error(error);
 
-    res.status(500).json({
-      error: "Erro ao conversar com a IA"
-    });
-  }
+    } catch (error) {
+  console.error("ERRO OPENAI:", error);
+
+  res.status(500).json({
+    error: error.message || "Erro ao conversar com a IA"
+  });
+}
 });
 
 const PORT = process.env.PORT || 3000;

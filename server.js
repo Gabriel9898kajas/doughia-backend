@@ -17,8 +17,12 @@ app.get("/", (req, res) => {
 });
 
 app.post("/chat", async (req, res) => {
+  console.log("REQUISIÇÃO /chat RECEBIDA");
+
   try {
     const { message } = req.body;
+
+    console.log("Mensagem recebida:", message);
 
     if (!message) {
       return res.status(400).json({
@@ -31,9 +35,12 @@ app.post("/chat", async (req, res) => {
       input: message
     });
 
+    console.log("Resposta da OpenAI recebida");
+
     res.json({
       response: response.output_text
     });
+
   } catch (error) {
     console.error("ERRO OPENAI:", error);
 
